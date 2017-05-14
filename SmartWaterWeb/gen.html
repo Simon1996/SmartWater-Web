@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>SmartWater</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
+<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Montserrat:400,700'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  
+<div class="container">
+  <div class="info">
+    <h1>Smart Water</h1><span>Made with <i class="fa fa-heart"></i> by <a href="https://play.google.com/store/apps/dev?id=8994045158187189365">DevelopedInside</a></span>
+  </div>
+</div>
+
+  <table width="100%" cellspacing="0" cellpadding="0">
+	   <tr> 
+			<td class="leftcol"><div id="map"></div></td>
+			<td valign="top">
+				<br>
+				<p><a>Информация: Состояние @</a></p>
+				<br>
+				<p><a>Уровень воды: @</a></p>
+				<br>
+				<p><a>Последнее обновление воды: @</a></p>
+				<br>
+				<p><a>Кол-во пользователей за сутки: @</a></p>
+			</td>
+	   </tr>
+  </table>
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+<script>
+      function initMap() {
+	  
+        var uluru = {lat: +50, lng: 36.220};
+		var uluru1 = {lat: +50, lng: 25.220};
+		var uluru2 = {lat: +49, lng: 33.220};
+		var uluru3 = {lat: +47, lng: 33.220};
+		
+		
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: uluru1	
+        });
+		
+		
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+		  icon: 'img/pin.png',	
+	
+        });
+		
+		 var marker2 = new google.maps.Marker({
+          position: uluru1,
+           map: map,
+		   icon: 'img/pin.png',	
+		   
+        });
+		
+		var marker3 = new google.maps.Marker({
+          position: uluru2,
+          map: map,
+		  icon: 'img/pin.png',	
+		  
+        });
+		
+		var marker4 = new google.maps.Marker({
+          position: uluru3,
+          map: map,
+		  icon: 'img/pin.png',		
+		  
+        });
+		
+		
+		map.addListener('center_changed', function() {
+				// 3 seconds after the center of the map has changed, pan back to the
+				// marker.
+			window.setTimeout(function() {
+				map.panTo(marker.getPosition());
+			}, 3000);
+		});
+
+		marker.addListener('click', function() {
+			map.setZoom(8);
+			map.setCenter(marker.getPosition());
+		  });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1GvVJaWSRf1TPXCIGUzX9ihL0um3ORhQ&callback=initMap"></script>
+	
+
+</body>
+</html>
